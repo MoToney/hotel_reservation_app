@@ -12,6 +12,11 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import java.util.List;
+import java.util.Locale;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 
 @Configuration
 public class ApiConfig implements  WebMvcConfigurer{
@@ -34,4 +39,15 @@ public class ApiConfig implements  WebMvcConfigurer{
 //    }
 
 
+    // executor service is managed by spring and intialized with desired # of threads
+    @Bean
+    public ExecutorService executorService() {
+        return Executors.newFixedThreadPool(2);
+    }
+
+    // set up list of language locales for continued use
+    @Bean
+    public List<Locale> locales() {
+        return List.of(Locale.ENGLISH, Locale.FRENCH);
+    }
 }

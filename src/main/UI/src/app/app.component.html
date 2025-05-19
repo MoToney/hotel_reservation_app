@@ -22,6 +22,7 @@
 <main id="wrapper">
   <div class="scene" id="welcome">
     <article class="content">
+      <!-- display a list of each welcome message -->
       <h2>
         <ul>
           <li *ngFor="let msg of messages">{{msg}}</li>
@@ -78,7 +79,11 @@
                 </td>
                 <td>
                   <strong>Room #: {{room.roomNumber}}</strong><br/>
-                  <strong>Price: ${{room.price}}</strong>
+                  <strong>Price: </strong> <br>
+                  <!-- displays the price in U.S dollars, Canadian dollars, and Euros -->
+                  <strong>{{room.price | currency:'USD'}}</strong> <br>
+                  <strong>{{room.price | currency:'CAD'}}</strong> <br>
+                  <strong>{{room.price | currency:'EUR'}}</strong>
                 </td>
                 <td>
                   <button type="submit" class="btn btn-primary" (click)="reserveRoom(room.id)">Reserve</button>

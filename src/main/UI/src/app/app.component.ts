@@ -3,6 +3,7 @@ import {FormControl, FormGroup} from '@angular/forms';
 import {HttpClient, HttpResponse,HttpHeaders} from "@angular/common/http";
 import { Observable } from 'rxjs';
 import {map} from "rxjs/operators";
+import {CurrencyPipe} from "@angular/common";
 
 
 
@@ -11,7 +12,8 @@ import {map} from "rxjs/operators";
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  providers: [CurrencyPipe] // makes the functionality of CurrencyPipe available
 })
 export class AppComponent implements OnInit{
 
@@ -34,6 +36,8 @@ export class AppComponent implements OnInit{
         checkin: new FormControl(' '),
         checkout: new FormControl(' ')
       });
+
+      // adds the returned array into the local variable messages
       this.getMessages().subscribe((data) => {
         this.messages = data;
       })
@@ -87,6 +91,7 @@ export class AppComponent implements OnInit{
        return this.httpClient.get(this.baseURL + '/room/reservation/v1?checkin='+ this.currentCheckInVal + '&checkout='+this.currentCheckOutVal, {responseType: 'json'});
     }
 
+    // gets data from the api url and returns the string array
     getMessages(): Observable<string[]> {
       return this.httpClient.get<string[]>(this.baseURL + '/api/welcome')
     }

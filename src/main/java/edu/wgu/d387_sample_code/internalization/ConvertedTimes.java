@@ -8,9 +8,11 @@ import java.util.List;
 
 @Component
 public class ConvertedTimes {
+
+    // formats the time in standard 12 hr hh:mm time
     private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a");
 
-
+    // returns array of the times in est, mst, and uct time
     public List<String> getTimes() {
         ZonedDateTime time = ZonedDateTime.now(ZoneId.of("America/New_York"));
 

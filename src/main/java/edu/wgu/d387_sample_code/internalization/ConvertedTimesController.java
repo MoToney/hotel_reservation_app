@@ -12,9 +12,15 @@ import java.util.List;
 @RequestMapping("/api")
 public class ConvertedTimesController {
 
+    private final ConvertedTimes convertedTimes;
+
+    public ConvertedTimesController(ConvertedTimes convertedTimes) {
+        this.convertedTimes = convertedTimes;
+    }
+
+    // displays array of times at localhost:8000/api/times
     @GetMapping("/times")
-    public List<String> displayTimezones() {
-        ConvertedTimes convertedTimes = new ConvertedTimes();
+    public List<String> displayTimes() {
         return convertedTimes.getTimes();
     }
 }

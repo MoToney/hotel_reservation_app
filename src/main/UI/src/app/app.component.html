@@ -15,6 +15,9 @@
     <nav id="nav" style="position: relative; top: 0; left: 0; bottom: auto; right: auto; width: 100%;">
       <div class="navbar">
         <div class="brand"><a href="/#welcome">Landon <span>Hotel</span></a></div>
+        <ul class="welcome">
+          <li *ngFor="let msg of messages">{{msg}}</li>
+        </ul>
       </div><!-- navbar -->
     </nav>
   </div>
@@ -23,11 +26,14 @@
   <div class="scene" id="welcome">
     <article class="content">
       <!-- display a list of each welcome message -->
-      <h2>
-        <ul>
-          <li *ngFor="let msg of messages">{{msg}}</li>
-        </ul>
-      </h2>
+    <h2> Join us for a live presentation at
+
+      <ul>
+        <li *ngFor="let tm of times; let i = index">{{tm}}</li>
+      </ul>
+
+    </h2>
+
 
       <div class="row">
         <div class=""col-12>

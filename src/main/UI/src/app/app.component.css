@@ -276,6 +276,7 @@ header #nav .navbar .brand a {
   header #nav .navbar .brand a span {
     display: none;
   }
+
 }
 
 /* line 32, ../../../components/sass/modules/_nav.scss */
@@ -287,6 +288,8 @@ header #nav .navbar ul {
   float: left;
   padding-left: 0.83333%;
   padding-right: 0.83333%;
+  font-weight: bold; /* makes the welcome message bold */
+  color: white; /* makes the welcome message font white */
 }
 
 /* line 34, ../../../components/sass/modules/_nav.scss */

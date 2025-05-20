@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
 import {HttpClient, HttpResponse,HttpHeaders} from "@angular/common/http";
-import { Observable } from 'rxjs';
+import {interval, Observable} from 'rxjs';
 import {map} from "rxjs/operators";
 import {CurrencyPipe} from "@angular/common";
 
@@ -30,6 +30,7 @@ export class AppComponent implements OnInit{
   currentCheckInVal!:string;
   currentCheckOutVal!:string;
   messages! : string[];
+  times! : string[];
 
     ngOnInit(){
       this.roomsearch= new FormGroup({
@@ -38,9 +39,25 @@ export class AppComponent implements OnInit{
       });
 
       // adds the returned array into the local variable messages
-      this.getMessages().subscribe((data) => {
+      this.getMessages().subscribe((data)=> {
         this.messages = data;
-      })
+      });
+
+      // adds the returned array into the local variable times
+      this.getTimes().subscribe((data)=> {
+        this.times = data;
+      });
+
+
+      // updates the times every 5 seconds
+      interval(5000).subscribe(() => {
+        this.getTimes().subscribe((data)=> {
+          this.times = data;
+        });
+      });
+
+
+
 
  //     this.rooms=ROOMS;
 
@@ -94,6 +111,11 @@ export class AppComponent implements OnInit{
     // gets data from the api url and returns the string array
     getMessages(): Observable<string[]> {
       return this.httpClient.get<string[]>(this.baseURL + '/api/welcome')
+    }
+
+    // gets data from the api at api/timezone, which returns the string array
+    getTimes(): Observable<string[]> {
+      return this.httpClient.get<string[]>(this.baseURL + '/api/times');
     }
 
   }

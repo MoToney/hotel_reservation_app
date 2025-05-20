@@ -9,8 +9,8 @@ import java.util.List;
 @Component
 public class ConvertedTimes {
 
-    // formats the time in standard 12 hr hh:mm time
-    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a");
+    // formats the time in standard 12 hr hh:mm time and timezone
+    private final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a z");
 
     // returns array of the times in est, mst, and uct time
     public List<String> getTimes() {
